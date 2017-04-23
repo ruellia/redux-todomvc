@@ -40,3 +40,10 @@ export function addItem(itemText) {
     itemText
   }
 }
+
+export function deleteItem(itemId) {
+  return {
+    type: 'DELETE_ITEM',
+    itemId
+  }
+}

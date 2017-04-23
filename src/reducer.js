@@ -66,6 +66,10 @@ function addItem(state, itemText) {
     return state.update('todos', (todos) => todos.push(newItem));
 }
 
+function deleteItem(state, itemId) {
+    return state.update('todos', (todos) => todos.filterNot((item) => item.get('id') === itemId));
+}
+
 export default function (state = Map(), action) {
     switch (action.type) {
         case 'SET_STATE':
@@ -82,6 +86,8 @@ export default function (state = Map(), action) {
             return doneEditing(state, action.itemId, action.newText);
         case 'ADD_ITEM':
             return addItem(state, action.itemText);
+        case 'DELETE_ITEM':
+            return deleteItem(state, action.itemId);
     }
     return state;
 }

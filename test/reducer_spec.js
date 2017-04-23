@@ -363,4 +363,36 @@ describe('reducer', () => {
                 ]
             }));
     });
+
+    it('handles DELETE_ITEM by removing the item', () => {
+        const initialState = fromJS({
+            todos: [
+                {
+                    id: 1,
+                    text: 'React',
+                    status: 'active'
+                }, {
+                    id: 2,
+                    text: 'Redux',
+                    status: 'completed'
+                }
+            ]
+        });
+        const action = {
+            type: 'DELETE_ITEM',
+            itemId: 2
+        }
+        const nextState = reducer(initialState, action);
+        expect(nextState)
+            .to
+            .equal(fromJS({
+                todos: [
+                    {
+                        id: 1,
+                        text: 'React',
+                        status: 'active'
+                    }
+                ]
+            }));
+    });
 });
