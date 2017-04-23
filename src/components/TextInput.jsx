@@ -45,16 +45,10 @@ export default class TextInput extends React.Component {
             className="edit"
             autoFocus={true}
             value={this.state.value}
-            onChange={this
-            ._handleOnChange
-            .bind(this)}
+            onChange={this._handleOnChange.bind(this)}
             type="text"
             ref="itemInput"
-            onKeyDown={this
-            ._handleKeyDown
-            .bind(this)}
-            onBlur={this
-            ._handleOnBlur
-            .bind(this)}/>
+            onKeyDown={this._handleKeyDown.bind(this)}
+            onBlur={this._handleOnBlur.bind(this)}/>
     }
 };
