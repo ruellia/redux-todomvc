@@ -23,7 +23,7 @@ export default class TodoHeader extends React.Component {
             <input
                 className="new-todo"
                 ref="addTodoInput"
-                autofocus
+                autoFocus
                 autoComplete="off"
                 placeholder="What needs to be done?"
                 onKeyPress={this._handleKeyPress.bind(this)}/>
