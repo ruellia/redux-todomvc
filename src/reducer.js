@@ -58,6 +58,14 @@ function changeFilter(state, filter) {
     return state.set('filter', filter);
 }
 
+function addItem(state, itemText) {
+    const itemId = state
+        .get('todos')
+        .reduce((maxId, item) => Math.max(maxId, item.get('id')), 0) + 1;
+    const newItem = Map({id: itemId, text: itemText, status: 'active'});
+    return state.update('todos', (todos) => todos.push(newItem));
+}
+
 export default function (state = Map(), action) {
     switch (action.type) {
         case 'SET_STATE':
@@ -72,6 +80,8 @@ export default function (state = Map(), action) {
             return cancelEditing(state, action.itemId);
         case 'DONE_EDITING':
             return doneEditing(state, action.itemId, action.newText);
+        case 'ADD_ITEM':
+            return addItem(state, action.itemText);
     }
     return state;
 }

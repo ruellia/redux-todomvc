@@ -33,3 +33,10 @@ export function doneEditing(itemId, newText) {
     newText
   }
 }
+
+export function addItem(itemText) {
+  return {
+    type: 'ADD_ITEM',
+    itemText
+  }
+}

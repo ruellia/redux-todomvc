@@ -331,4 +331,36 @@ describe('reducer', () => {
                 ]
             }));
     });
+
+    it('handles ADD_ITEM by adding the item', () => {
+        const initialState = fromJS({
+            todos: [
+                {
+                    id: 1,
+                    text: 'React',
+                    status: 'active'
+                }
+            ]
+        });
+        const action = {
+            type: 'ADD_ITEM',
+            itemText: 'Redux'
+        }
+        const nextState = reducer(initialState, action);
+        expect(nextState)
+            .to
+            .equal(fromJS({
+                todos: [
+                    {
+                        id: 1,
+                        text: 'React',
+                        status: 'active'
+                    }, {
+                        id: 2,
+                        text: 'Redux',
+                        status: 'active'
+                    }
+                ]
+            }));
+    });
 });
