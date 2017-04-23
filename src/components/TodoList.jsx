@@ -9,12 +9,21 @@ export default class TodoList extends React.Component {
             .shouldComponentUpdate
             .bind(this);
     }
+
+    getItems() {
+        if (this.props.todos) {
+            return this.props.todos.filter(
+                (item) => item.get('status') === this.props.filter || this.props.filter === 'all'
+            );
+        }
+        return [];
+    }
+
     render() {
         return <section className="main">
             <ul className="todo-list">
                 {this
-                    .props
-                    .todos
+                    .getItems()
                     .map(item => <TodoItem key={item.get('text')} text={item.get('text')}/>)}
             </ul>
         </section>
