@@ -12,11 +12,16 @@ export default class TodoList extends React.Component {
 
     getItems() {
         if (this.props.todos) {
-            return this.props.todos.filter(
-                (item) => item.get('status') === this.props.filter || this.props.filter === 'all'
-            );
+            return this
+                .props
+                .todos
+                .filter((item) => item.get('status') === this.props.filter || this.props.filter === 'all');
         }
         return [];
+    }
+
+    isCompleted(item) {
+        return item.get('status') === 'completed';
     }
 
     render() {
@@ -24,7 +29,14 @@ export default class TodoList extends React.Component {
             <ul className="todo-list">
                 {this
                     .getItems()
-                    .map(item => <TodoItem key={item.get('text')} text={item.get('text')}/>)}
+                    .map(item => <TodoItem
+                        key={item.get('text')}
+                        text={item.get('text')}
+                        isCompleted={this.isCompleted(item)}
+                        isEditing={item.get('editing')}
+                        toggleComplete={this.props.toggleComplete}
+                        deleteItem={this.props.deleteItem}
+                        editItem={this.props.editItem}/>)}
             </ul>
         </section>
     }
