@@ -70,6 +70,10 @@ function deleteItem(state, itemId) {
     return state.update('todos', (todos) => todos.filterNot((item) => item.get('id') === itemId));
 }
 
+function clearCompleted(state) {
+    return state.update('todos', (todos) => todos.filterNot((item) => item.get('status') === 'completed'));
+}
+
 export default function (state = Map(), action) {
     switch (action.type) {
         case 'SET_STATE':
@@ -88,6 +92,9 @@ export default function (state = Map(), action) {
             return addItem(state, action.itemText);
         case 'DELETE_ITEM':
             return deleteItem(state, action.itemId);
+        case 'CLEAR_COMPLETED':
+            return clearCompleted(state);
+
     }
     return state;
 }

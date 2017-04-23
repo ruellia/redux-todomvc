@@ -47,3 +47,9 @@ export function deleteItem(itemId) {
     itemId
   }
 }
+
+export function clearCompleted() {
+  return {
+    type: 'CLEAR_COMPLETED'
+  }
+}

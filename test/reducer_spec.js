@@ -395,4 +395,35 @@ describe('reducer', () => {
                 ]
             }));
     });
+
+    it('handles CLEAR_COMPLETED by removing all the completed items', () => {
+        const initialState = fromJS({
+            todos: [
+                {
+                    id: 1,
+                    text: 'React',
+                    status: 'active'
+                }, {
+                    id: 2,
+                    text: 'Redux',
+                    status: 'completed'
+                }
+            ]
+        });
+        const action = {
+            type: 'CLEAR_COMPLETED'
+        }
+        const nextState = reducer(initialState, action);
+        expect(nextState)
+            .to
+            .equal(fromJS({
+                todos: [
+                    {
+                        id: 1,
+                        text: 'React',
+                        status: 'active'
+                    }
+                ]
+            }));
+    });
 });
